@@ -1,0 +1,85 @@
+@import "../../ui/styles/media-queries";
+
+.defly-wallet-sign-txn-toast {
+  --defly-wallet-sign-txn-toast-width: 422px;
+  --defly-wallet-sign-txn-toast-height: 134px;
+  --defly-wallet-sign-txn-toast-font-family: "Spline Sans", sans-serif;
+  position: fixed;
+  bottom: 28px;
+  right: 35px;
+  z-index: 11;
+  overflow: hidden;
+  width: var(--defly-wallet-sign-txn-toast-width);
+  height: var(--defly-wallet-sign-txn-toast-height);
+  background: #222222;
+  border-radius: 8px;
+  animation: 0.2s DeflyWalletSignTxnToastSlideIn ease-out;
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--defly-wallet-sign-txn-toast-font-family);
+    // Although this is not a standard, Design team suggest that we use it so supported browsers will use it
+    // stylelint-disable-next-line property-no-unknown
+    font-smooth: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ul,
+  ol,
+  li {
+    list-style-type: none;
+  }
+}
+
+.defly-wallet-sign-txn-toast__header__close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.defly-wallet-sign-txn-toast__content__lottie-animation {
+  position: absolute;
+  top: -30px;
+  left: -45px;
+  width: 200px;
+  height: 200px;
+}
+
+.defly-wallet-sign-txn-toast__content__description {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  max-width: 257px;
+  color: #fefefe;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.1px;
+}
+
+@include for-small-screens {
+  .defly-wallet-sign-txn-toast {
+    display: none;
+  }
+}
+
+@keyframes DeflyWalletSignTxnToastSlideIn {
+  0% {
+    bottom: 12px;
+    opacity: 0;
+  }
+
+  100% {
+    bottom: 26px;
+    opacity: 1;
+  }
+}

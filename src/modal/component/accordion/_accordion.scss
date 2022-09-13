@@ -1,0 +1,37 @@
+.defly-wallet-accordion-disabled {
+
+  .defly-wallet-accordion-panel {
+    background: transparent;
+    height: auto;
+  }
+
+  .defly-wallet-accordion-item {
+    display: flex;
+    flex-flow: column-reverse;
+    background-color: transparent;
+    margin-bottom: 0;
+
+    #defly-wallet-connect-modal-desktop-mode__qr-code {
+      margin-top: 0;
+    }
+
+    .defly-wallet-accordion-button {
+      background: transparent;
+      border-radius: 0;
+      font-size: 22px;
+      padding: 0 20px;
+      letter-spacing: 0.2px;
+      margin-top: 50px;
+
+      .defly-wallet-accordion-icon {
+        display: none;
+      }
+    }
+  }
+
+  .defly-wallet-accordion-item--active {
+    .defly-wallet-accordion-panel {
+      height: auto;
+    }
+  }
+}

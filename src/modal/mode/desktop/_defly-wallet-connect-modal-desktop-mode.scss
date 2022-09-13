@@ -1,0 +1,34 @@
+@import "../../../ui/styles/media-queries";
+
+.defly-wallet-connect-modal-desktop-mode {
+  display: flex;
+  padding-top: 52px;
+  padding-bottom: 15px;
+  align-items: flex-start;
+}
+
+.defly-wallet-connect-modal-information-section {
+  flex: 0 0 50%;
+  margin-top: 47px;
+}
+
+.defly-wallet-accordion-disabled {
+  flex: 0 0 50%;
+  padding: 0 24px;
+}
+
+#defly-wallet-connect-modal-desktop-mode__qr-code {
+  width: 370px;
+  height: 370px;
+  margin: 0;
+  display: flex;
+  box-shadow: 0 12px 32px rgba(26, 35, 91, 0.1);
+  border-radius: 30px;
+}
+
+@include for-small-screens {
+  .defly-wallet-connect-modal-information-section {
+    flex: 0 0 100%;
+    margin-top: 20px;
+  }
+}
