@@ -17,10 +17,11 @@
   color: #fff;
   font-size: 52px;
   line-height: 48px;
-  font-weight: 500;
+  font-weight: 900;
   white-space: pre-line;
   text-align: center;
   letter-spacing: 0;
+  font-family: var(--defly-wallet-connect-modal-headline-family), sans-serif;
 }
 
 @include for-small-screens {

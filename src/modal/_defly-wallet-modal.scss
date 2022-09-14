@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600&display=swap');
 @import "../ui/styles/media-queries";
 
+@font-face {
+  font-family: 'PP Right Grotesk';
+  src: url('../asset/fonts/pp-right-grotesk-wide-black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 .defly-wallet-connect-modal {
   --defly-wallet-connect-modal-font-family: "Spline Sans", sans-serif;
+  --defly-wallet-connect-modal-headline-family: "PP Right Grotesk", sans-serif;
   position: fixed;
   top: 0;
   right: 0;
