@@ -119,6 +119,7 @@ function getDeflyConnectModalAccordionData(uri: string): AccordionData[] {
     {
       id: "scan-to-connect",
       title: "Scan with Defly Wallet to connect",
+      code: uri,
       description: (
         <QRCode
           id={"defly-wallet-connect-modal-desktop-mode__qr-code"}

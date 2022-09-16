@@ -5,6 +5,7 @@ import React from "react";
 import AccordionButton from "../button/AccordionButton";
 import AccordionPanel from "../panel/AccordionPanel";
 import {AccordionData} from "../util/accordionTypes";
+import AccordionCopyButton from "../copy-button/AccordionCopyButton";
 
 interface AccordionItemProps {
   data: AccordionData;
@@ -13,7 +14,7 @@ interface AccordionItemProps {
 }
 
 function AccordionItem({data, onToggle, isActive}: AccordionItemProps) {
-  const {title, description} = data;
+  const {title, description, code} = data;
 
   return (
     <li
@@ -21,8 +22,8 @@ function AccordionItem({data, onToggle, isActive}: AccordionItemProps) {
         isActive ? "defly-wallet-accordion-item--active" : ""
       }`}>
       <AccordionButton onClick={onToggle}>{title}</AccordionButton>
-
-      <AccordionPanel>{description}</AccordionPanel>
+      <AccordionCopyButton>{code}</AccordionCopyButton>
+      <AccordionPanel code={code}>{description}</AccordionPanel>
     </li>
   );
 }
