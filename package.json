@@ -1,11 +1,11 @@
 {
-  "name": "@deflywallet/connect",
+  "name": "@blockshake/defly-connect",
   "version": "0.0.1",
   "description": "JavaScript SDK for integrating Defly Wallet to web applications.",
   "main": "dist/index.js",
   "scripts": {
     "dev": "./node_modules/.bin/rollup -c -w",
-    "build": "npm run eslint && ./node_modules/.bin/rollup -c",
+    "build": "./node_modules/.bin/rollup -c",
     "eslint": "./node_modules/.bin/eslint --ext .jsx,.js,.tsx,.ts src/"
   },
   "author": "Defly Wallet",

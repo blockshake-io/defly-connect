@@ -1,5 +1,5 @@
 
-### @deflywallet/connect
+### @blockshake/defly-connect
 
 JavaScript SDK for integrating [Defly Wallet](https://defly.app) to web applications. For more detailed information, please check our [Defly Connect Docs](https://docs.defly.app/app/overview/).
 
@@ -14,10 +14,10 @@ JavaScript SDK for integrating [Defly Wallet](https://defly.app) to web applicat
 
 ### Quick Start
 
-Let's start with installing `@deflywallet/connect`
+Let's start with installing `@blockshake/defly-connect`
 
 ```
-npm install --save @deflywallet/connect
+npm install --save @blockshake/defly-connect
 ```
 
 ```jsx

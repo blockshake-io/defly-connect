@@ -66,20 +66,20 @@ Include the purpose of the PR, the changes you made, and the expected behavior t
 
 For working on your local project you should add/replace in local project package.json file 
 ```json
-"@deflywallet/connect": "version"
+"@blockshake/defly-connect": "version"
 ```
 
 to 
 
 ```json
-"@deflywallet/connect": "file:../connect"
+"@blockshake/defly-connect": "file:../connect"
 ```
 
 here an example of package.json file
 
 ```code
   "dependencies": {
-    "@deflywallet/connect": "C:\\dev\\wallet-connect",
+    "@blockshake/defly-connect": "C:\\dev\\wallet-connect",
     "algosdk": "1.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
