@@ -2,7 +2,6 @@ import "./_accordion-copy-button.scss";
 
 import React from "react";
 
-import { generateDeflyWalletConnectDeepLink } from '../../../../util/deflyWalletUtils';
 import { copyToClipboard } from '../../../../util/copy/copyUtils';
 
 interface AccordionCopyButtonProps {
@@ -17,7 +16,7 @@ function AccordionCopyButton({children}: AccordionCopyButtonProps) {
   );
 
   function handleClipboardCopy() {
-    copyToClipboard(generateDeflyWalletConnectDeepLink(children as string));
+    copyToClipboard(children as string);
   }
 }
 

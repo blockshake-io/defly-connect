@@ -10,7 +10,7 @@ This is a fork of the Pera connect JavaScript SDK, for more details visit [Pera 
 Let's start with installing `@blockshake/defly-connect`
 
 ```
-npm install --save git+https://github.com:blockshake-io/defly-connect.git
+npm install --save @blockshake-io/defly-connect
 ```
 
 ```jsx
