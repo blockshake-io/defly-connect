@@ -3,7 +3,6 @@ import "./_accordion-panel.scss";
 import React from "react";
 
 import { copyToClipboard } from '../../../../util/copy/copyUtils';
-import { generateDeflyWalletConnectDeepLink } from '../../../../util/deflyWalletUtils';
 
 interface AccordionPanelProps {
   code: string;
@@ -18,7 +17,7 @@ function AccordionPanel({children, code}: AccordionPanelProps) {
   );
 
   function handleClipboardCopy() {
-    copyToClipboard(generateDeflyWalletConnectDeepLink(code));
+    copyToClipboard(code);
   }
 }
 
