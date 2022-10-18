@@ -20,7 +20,7 @@ function DeflyWalletConnectModalInformationSection() {
       />
 
       <h1 className={"defly-wallet-connect-modal-information-section__title"}>
-        {"Secure \n trading & \n wallet."}
+        {"Secure \n wallet & \n trading"}
       </h1>
     </section>
   );

@@ -5,16 +5,17 @@ import React from "react";
 import AccordionIcon from "../icon/AccordionIcon";
 
 interface AccordionButtonProps {
+  linkData: {text: string, link: string};
   children: React.ReactNode;
   onClick: VoidFunction;
 }
 
-function AccordionButton({children, onClick}: AccordionButtonProps) {
+function AccordionButton({linkData, children, onClick}: AccordionButtonProps) {
   return (
     <button className={"defly-wallet-accordion-button"} onClick={onClick}>
       <AccordionIcon />
 
-      <p>{children}</p>
+      <p>{children} <a href={linkData.link}>{linkData.text}</a></p>
     </button>
   );
 }

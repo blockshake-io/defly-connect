@@ -14,14 +14,15 @@ interface AccordionItemProps {
 }
 
 function AccordionItem({data, onToggle, isActive}: AccordionItemProps) {
-  const {title, description, code} = data;
+  const {title, titleLinkText, titleLink, description, code} = data;
+  const linkData = {text: titleLinkText, link: titleLink };
 
   return (
     <li
       className={`defly-wallet-accordion-item ${
         isActive ? "defly-wallet-accordion-item--active" : ""
       }`}>
-      <AccordionButton onClick={onToggle}>{title}</AccordionButton>
+      <AccordionButton linkData={linkData} onClick={onToggle}>{title}</AccordionButton>
       <AccordionCopyButton>{code}</AccordionCopyButton>
       <AccordionPanel code={code}>{description}</AccordionPanel>
     </li>

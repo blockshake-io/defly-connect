@@ -28,6 +28,16 @@
       .defly-wallet-accordion-icon {
         display: none;
       }
+
+      a {
+        color: inherit;
+
+        @media (hover: hover) {
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
     }
   }
 

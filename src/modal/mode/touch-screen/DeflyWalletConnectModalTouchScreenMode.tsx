@@ -49,7 +49,7 @@ function DeflyWalletConnectModalTouchScreenMode({
                 className={
                   "defly-wallet-connect-modal-touch-screen-mode__new-to-defly-box__text"
                 }>
-                {"New to Defly?"}
+                {"New to "}<a href={`https://defly.app/`}>{`Defly Algorand Wallet`}</a>{"?"}
               </p>
             </div>
 
