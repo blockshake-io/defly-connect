@@ -1,0 +1,91 @@
+@import "../../../ui/styles/media-queries";
+
+.defly-wallet-connect-modal-information-section {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-content: center;
+
+  &--mobile {
+    padding: 0;
+    margin-top: 20px;
+
+    .defly-wallet-connect-modal-information-section__defly-icon {
+      margin-bottom: 21px;
+      max-width: 70px;
+    }
+
+    .defly-wallet-connect-modal-information-section__title {
+      font-size: 34px;
+      line-height: 32px;
+    }
+
+
+  }
+
+}
+
+.defly-wallet-connect-modal-information-section__defly-icon {
+  margin-bottom: 32px;
+}
+
+.defly-wallet-connect-modal-information-section__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 52px;
+  line-height: 48px;
+  font-weight: 900;
+  white-space: pre-line;
+  text-align: center;
+  letter-spacing: 0;
+  font-family: var(--defly-wallet-connect-modal-headline-family), sans-serif;
+}
+
+.defly-wallet-connect-modal-information-section__download-defly-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 20px auto 0;
+  padding: 0;
+
+  color: #999999;
+  background-color: transparent;
+
+  outline: none;
+  border: none;
+
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01px;
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+@include for-small-screens {
+  .defly-wallet-connect-modal-information-section--desktop {
+    padding: 0;
+
+    .defly-wallet-connect-modal-information-section__defly-icon {
+      max-width: 70px;
+      margin-bottom: 21px;
+    }
+
+    .defly-wallet-connect-modal-information-section__title {
+      font-size: 34px;
+      line-height: 32px;
+    }
+
+  }
+
+  .defly-wallet-connect-modal-information-section__download-defly-button {
+    display: none;
+  }
+}

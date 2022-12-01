@@ -1,46 +1,35 @@
 import {shuffleArray} from "../array/arrayUtils";
-import {DEFLY_WALLET_LOCAL_STORAGE_KEYS} from "../storage/storageConstants";
-import {getLocalStorage} from "../storage/storageUtils";
+import {DeflyWalletNetwork} from "../deflyWalletTypes";
 import fetcher from "./fetcher";
 
-const BRIDGE_SERVERS_URL = "https://static.defly.app/wc-bridge-servers.json";
+const DEFLY_CONNECT_CONFIG_URL = "https://static.defly.app/wc-bridge-servers.json";
+const DEFLY_CONNECT_CONFIG_STAGING_URL = "https://static.defly.app/wc-bridge-servers.json";
 
 /**
- * @returns {string[]} Bridge server list
+ * @returns {object} {use_sound: boolean, servers: string[]}
  */
-function listBridgeServers() {
+function fetchDeflyConnectConfig(network: DeflyWalletNetwork) {
+  const configURL =
+    network === "mainnet" ? DEFLY_CONNECT_CONFIG_URL : DEFLY_CONNECT_CONFIG_STAGING_URL;
+
   return fetcher<{
+    use_sound: boolean;
     servers: string[];
-  }>(BRIDGE_SERVERS_URL);
+  }>(configURL, {cache: "no-store"});
 }
+
+
 
 /**
- * If there's a bridge URL in local storage returns it
- * otherwise fetches the available servers and picks a random one and saves it to local storage
- *
- * @returns {string} Bridge URL
+ * @returns {object} {bridgeURL: string, shouldUseSound: boolean}
  */
-async function assignBridgeURL() {
-  // Retrieve bridge from local storage
-  const bridgeURL = getLocalStorage()?.getItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.BRIDGE_URL);
+async function getDeflyConnectConfig(network: DeflyWalletNetwork) {
+  const response = await fetchDeflyConnectConfig(network);
 
-  // User is already assigned to a bridge
-  // No need to retrieve new one
-  if (bridgeURL) {
-    return bridgeURL;
-  }
-
-  // User is not assigned to a bridge
-  // Retrieve available bridges
-  const response = await listBridgeServers();
-
-  // Pick a random bridge
-  const newBridgeURL = shuffleArray(response.servers)[0];
-
-  // Save bridge URL to local storage
-  getLocalStorage()?.setItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.BRIDGE_URL, newBridgeURL);
-
-  return newBridgeURL;
+  return {
+    bridgeURL: shuffleArray(response.servers)[0],
+    shouldUseSound: response.use_sound
+  };
 }
 
-export {assignBridgeURL, listBridgeServers};
+export {getDeflyConnectConfig, fetchDeflyConnectConfig};

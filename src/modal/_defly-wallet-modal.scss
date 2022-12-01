@@ -9,24 +9,64 @@
   font-display: swap;
 }
 
-.defly-wallet-connect-modal {
-  --defly-wallet-connect-modal-font-family: "Spline Sans", sans-serif;
+.defly-wallet-modal {
+  --defly-wallet-modal-font-family: "Spline Sans", sans-serif;
   --defly-wallet-connect-modal-headline-family: "PP Right Grotesk", sans-serif;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 999999;
+
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  &--select-account {
+    .defly-wallet-modal__body {
+      width: 480px;
+      height: 578px;
+
+    }
+  }
+
+  &--mobile {
+    .defly-wallet-modal__body {
+      top: 40px;
+      bottom: 0;
+      left: 20px;
+
+      width: calc(100% - 40px);
+      max-width: unset;
+      height: calc(calc(100 * var(--vh)));
+
+      padding: 20px;
+
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.03);
+
+      border-radius: 20px 20px 0px 0px;
+
+      animation: 0.3s DeflyWalletConnectMobileSlideIn ease-out;
+
+      overflow-y: auto;
+
+      transform: unset;
+
+      &::before {
+        background-image: unset;
+      }
+    }
+  }
 
   * {
     box-sizing: border-box;
+
     margin: 0;
     padding: 0;
-    font-family: var(--defly-wallet-connect-modal-font-family);
+
+    font-family: var(--defly-wallet-modal-font-family);
 
     // Although this is not a standard, Design team suggest that we use it so supported browsers will use it
     // stylelint-disable-next-line property-no-unknown
@@ -42,7 +82,7 @@
   }
 }
 
-.defly-wallet-connect-button {
+.defly-wallet-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,27 +93,17 @@
   border-radius: 12px;
   outline: none;
   cursor: pointer;
-  font-family: var(--defly-wallet-connect-modal-font-family);
+  font-family: var(--defly-wallet-modal-font-family);
   font-size: 14px;
 }
 
-.defly-wallet-connect-modal__logo img {
+.defly-wallet-modal__logo img {
   display: block;
+
   width: 32px;
 }
 
-.defly-wallet-connect-modal__close-button {
-  width: 40px;
-  height: 40px;
-  margin: 0;
-  padding: 0;
-  background: #333333;
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 100%;
-}
-
-.defly-wallet-connect-modal__body {
+.defly-wallet-modal__body {
   position: relative;
   top: 50%;
   left: 50%;
@@ -85,50 +115,16 @@
   border-radius: 40px;
   animation: 0.3s DeflyWalletConnectSlideIn ease-out;
   transform: translate(-50%, -50%);
-}
 
-.defly-wallet-connect-modal__body__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: absolute;
-  top: -44px;
-  right: -34px;
-  left: 0;
 }
 
 @include for-small-screens {
-  .defly-wallet-connect-modal__body {
-    top: 40px;
-    bottom: 0;
-    left: 20px;
-    width: calc(100% - 40px);
-    max-width: unset;
-    height: calc(calc(100 * var(--vh)));
-    padding: 20px;
-    background-color: #131313;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.03);
-    border-radius: 20px 20px 0 0;
-    animation: 0.3s DeflyWalletConnectMobileSlideIn ease-out;
-    overflow-y: auto;
-    transform: unset;
-  }
-
-  .defly-wallet-connect-modal__body__header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: static;
-  }
-
-  .defly-wallet-connect-modal__close-button {
-    width: 24px;
-    height: 24px;
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: unset;
-    box-shadow: unset;
+  .defly-wallet-modal--desktop {
+    .defly-wallet-modal__body {
+      width: 100%;
+      max-width: calc(100vw - 32px);
+      padding: 24px;
+    }
   }
 }
 

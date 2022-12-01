@@ -64,12 +64,12 @@ Include the purpose of the PR, the changes you made, and the expected behavior t
 
 ##### Work on local
 
-For working on your local project you should add/replace in local project package.json file 
+For working on your local project you should add/replace in local project package.json file
 ```json
 "@blockshake/defly-connect": "version"
 ```
 
-to 
+to
 
 ```json
 "@blockshake/defly-connect": "file:../connect"
