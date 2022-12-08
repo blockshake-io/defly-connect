@@ -1,31 +1,31 @@
-import DeflyWalletConnectError from "../util/DeflyWalletConnectError";
-import {waitForElementCreatedAtShadowDOM} from "../util/dom/domUtils";
+import DeflyWalletConnectError from '../util/DeflyWalletConnectError';
+import { waitForElementCreatedAtShadowDOM } from '../util/dom/domUtils';
 
-export type DEFLY_CONNECT_MODAL_VIEWS = "default" | "download-defly";
+export type DEFLY_CONNECT_MODAL_VIEWS = 'default' | 'download-defly';
 
 export interface DeflyWalletModalConfig {
   shouldUseSound: boolean;
 }
 
 // The ID of the wrapper element for DeflyWalletConnectModal
-const DEFLY_WALLET_CONNECT_MODAL_ID = "defly-wallet-connect-modal-wrapper";
+const DEFLY_WALLET_CONNECT_MODAL_ID = 'defly-wallet-connect-modal-wrapper';
 
 // The ID of the wrapper element for DeflyWalletRedirectModal
-const DEFLY_WALLET_REDIRECT_MODAL_ID = "defly-wallet-redirect-modal-wrapper";
+const DEFLY_WALLET_REDIRECT_MODAL_ID = 'defly-wallet-redirect-modal-wrapper';
 
 // The ID of the wrapper element for DeflyWalletSignTxnToast
-const DEFLY_WALLET_SIGN_TXN_TOAST_ID = "defly-wallet-sign-txn-toast-wrapper";
+const DEFLY_WALLET_SIGN_TXN_TOAST_ID = 'defly-wallet-sign-txn-toast-wrapper';
 
 // The ID of the wrapper element for DeflyWalletSignTxnModal
-const DEFLY_WALLET_SIGN_TXN_MODAL_ID = "defly-wallet-sign-txn-modal-wrapper";
+const DEFLY_WALLET_SIGN_TXN_MODAL_ID = 'defly-wallet-sign-txn-modal-wrapper';
 
 // The classname of Defly wallet modal
-const DEFLY_WALLET_MODAL_CLASSNAME = "defly-wallet-modal";
+const DEFLY_WALLET_MODAL_CLASSNAME = 'defly-wallet-modal';
 
 function createModalWrapperOnDOM(modalId: string) {
-  const wrapper = document.createElement("div");
+  const wrapper = document.createElement('div');
 
-  wrapper.setAttribute("id", modalId);
+  wrapper.setAttribute('id', modalId);
 
   document.body.appendChild(wrapper);
 
@@ -34,11 +34,13 @@ function createModalWrapperOnDOM(modalId: string) {
 
 function openDeflyWalletConnectModal(modalConfig: DeflyWalletModalConfig) {
   return (uri: string) => {
-    const root = createModalWrapperOnDOM(DEFLY_WALLET_CONNECT_MODAL_ID);
-    const newURI = `${uri}&algorand=true`;
-    const {shouldUseSound} = modalConfig;
+    if (!document.getElementById(DEFLY_WALLET_CONNECT_MODAL_ID)) {
+      const root = createModalWrapperOnDOM(DEFLY_WALLET_CONNECT_MODAL_ID);
+      const newURI = `${uri}&algorand=true`;
+      const { shouldUseSound } = modalConfig;
 
-    root.innerHTML = `<defly-wallet-connect-modal uri="${newURI}" should-use-sound="${shouldUseSound}"></defly-wallet-connect-modal>`;
+      root.innerHTML = `<defly-wallet-connect-modal uri="${newURI}" should-use-sound="${shouldUseSound}"></defly-wallet-connect-modal>`;
+    }
   };
 }
 
@@ -50,21 +52,21 @@ function openDeflyWalletConnectModal(modalConfig: DeflyWalletModalConfig) {
 function openDeflyWalletRedirectModal() {
   const root = createModalWrapperOnDOM(DEFLY_WALLET_REDIRECT_MODAL_ID);
 
-  root.innerHTML = "<defly-wallet-redirect-modal></defly-wallet-redirect-modal>";
+  root.innerHTML = '<defly-wallet-redirect-modal></defly-wallet-redirect-modal>';
 }
 
 function openDeflyWalletSignTxnModal() {
   const root = createModalWrapperOnDOM(DEFLY_WALLET_SIGN_TXN_MODAL_ID);
 
-  root.innerHTML = "<defly-wallet-sign-txn-modal></defly-wallet-sign-txn-modal>";
+  root.innerHTML = '<defly-wallet-sign-txn-modal></defly-wallet-sign-txn-modal>';
 
-  const signTxnModal = root.querySelector("defly-wallet-sign-txn-modal");
+  const signTxnModal = root.querySelector('defly-wallet-sign-txn-modal');
 
   return signTxnModal
     ? waitForElementCreatedAtShadowDOM(
-        signTxnModal,
-        "defly-wallet-sign-txn-modal__body__content"
-      )
+      signTxnModal,
+      'defly-wallet-sign-txn-modal__body__content'
+    )
     : Promise.reject();
 }
 
@@ -75,9 +77,9 @@ function closeDeflyWalletSignTxnModal(rejectPromise?: (error: any) => void) {
     rejectPromise(
       new DeflyWalletConnectError(
         {
-          type: "SIGN_TXN_CANCELLED"
+          type: 'SIGN_TXN_CANCELLED'
         },
-        "Transaction sign is cancelled"
+        'Transaction sign is cancelled'
       )
     );
   }
@@ -91,7 +93,7 @@ function closeDeflyWalletSignTxnModal(rejectPromise?: (error: any) => void) {
 function openDeflyWalletSignTxnToast() {
   const root = createModalWrapperOnDOM(DEFLY_WALLET_SIGN_TXN_TOAST_ID);
 
-  root.innerHTML = "<defly-wallet-sign-txn-toast></defly-wallet-sign-txn-toast>";
+  root.innerHTML = '<defly-wallet-sign-txn-toast></defly-wallet-sign-txn-toast>';
 }
 
 function closeDeflyWalletSignTxnToast() {

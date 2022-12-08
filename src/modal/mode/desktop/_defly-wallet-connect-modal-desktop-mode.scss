@@ -84,8 +84,7 @@
   font-size: 13px;
 }
 
-.defly-wallet-connect-qr-code-wrapper,
-.defly-wallet-download-qr-code-wrapper {
+.defly-wallet-connect-qr-code-wrapper {
   width: fit-content;
   padding: 10px;
   margin: 0 auto;
@@ -98,13 +97,6 @@
 .defly-wallet-connect-qr-code-wrapper {
   margin-top: 30px;
   cursor: pointer;
-}
-
-.defly-wallet-download-qr-code-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
 }
 
 .defly-wallet-download-qr-code__image {
@@ -257,10 +249,6 @@
 
   .defly-wallet-connect-modal-download-defly-view {
     padding: 24px;
-  }
-
-  .defly-wallet-download-qr-code-wrapper {
-    margin-top: 32px;
   }
 
   .defly-wallet-connect-modal-download-defly-view__footer {

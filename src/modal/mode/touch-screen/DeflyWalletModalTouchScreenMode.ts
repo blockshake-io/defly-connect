@@ -28,7 +28,7 @@ const touchScreenDefaultMode = `
       </div>
 
       <a
-        href="https://deflywallet.app/download/"
+        href="https://defly.app/download.html"
         class="defly-wallet-connect-modal-touch-screen-mode__install-defly-wallet-button"
         rel="noopener noreferrer"
         target="_blank">

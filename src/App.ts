@@ -1,4 +1,5 @@
 import {DeflyWalletModalHeader} from "./modal/header/DeflyWalletModalHeader";
+import {DeflyWalletDownloadQRCode} from "./modal/mode/desktop/download-qr-code/DeflyWalletDownloadQRCode";
 import {DeflyWalletModalDesktopMode} from "./modal/mode/desktop/DeflyWalletConnectModalDesktopMode";
 import {DeflyWalletModalTouchScreenMode} from "./modal/mode/touch-screen/DeflyWalletModalTouchScreenMode";
 import {DeflyWalletConnectModal} from "./modal/DeflyWalletConnectModal";
@@ -31,3 +32,4 @@ window.customElements.define(
 );
 window.customElements.define("defly-wallet-sign-txn-toast", DeflyWalletSignTxnToast);
 window.customElements.define("defly-wallet-sign-txn-modal", DeflyWalletSignTxnModal);
+window.customElements.define("defly-wallet-download-qr-code", DeflyWalletDownloadQRCode);

@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
-import WalletConnect from "@walletconnect/client";
-import {formatJsonRpcRequest} from "@json-rpc-tools/utils/dist/cjs/format";
+import WalletConnect from '@walletconnect/client';
+import { formatJsonRpcRequest } from '@json-rpc-tools/utils/dist/cjs/format';
 
-import DeflyWalletConnectError from "./util/DeflyWalletConnectError";
+import DeflyWalletConnectError from './util/DeflyWalletConnectError';
 import {
   openDeflyWalletConnectModal,
   openDeflyWalletRedirectModal,
@@ -13,7 +13,7 @@ import {
   DEFLY_WALLET_SIGN_TXN_TOAST_ID,
   DEFLY_WALLET_MODAL_CLASSNAME,
   DeflyWalletModalConfig,
-} from "./modal/deflyWalletConnectModalUtils";
+} from './modal/deflyWalletConnectModalUtils';
 import {
   getWalletDetailsFromStorage,
   getLocalStorage,
@@ -22,17 +22,17 @@ import {
   getNetworkFromStorage,
   getWalletConnectObjectFromStorage,
   getWalletPlatformFromStorage
-} from "./util/storage/storageUtils";
-import {getDeflyConnectConfig} from "./util/api/DeflyWalletConnectApi";
-import {DEFLY_WALLET_LOCAL_STORAGE_KEYS} from "./util/storage/storageConstants";
-import {DeflyWalletTransaction, SignerTransaction} from "./util/model/deflyWalletModels";
+} from './util/storage/storageUtils';
+import { getDeflyConnectConfig } from './util/api/deflyWalletConnectApi';
+import { DEFLY_WALLET_LOCAL_STORAGE_KEYS } from './util/storage/storageConstants';
+import { DeflyWalletTransaction, SignerTransaction } from './util/model/deflyWalletModels';
 import {
   base64ToUint8Array,
   encodeUnsignedTransactionInBase64
-} from "./util/transaction/transactionUtils";
-import {isMobile} from "./util/device/deviceUtils";
-import {AlgorandChainIDs, AppMeta, DeflyWalletNetwork} from "./util/deflyWalletTypes";
-import {getDeflyWalletAppMeta} from "./util/deflyWalletUtils";
+} from './util/transaction/transactionUtils';
+import { isMobile } from './util/device/deviceUtils';
+import { AlgorandChainIDs, AppMeta, DeflyWalletNetwork } from './util/deflyWalletTypes';
+import { getDeflyWalletAppMeta } from './util/deflyWalletUtils';
 
 interface DeflyWalletConnectOptions {
   bridge?: string;
@@ -45,8 +45,8 @@ interface DeflyWalletConnectOptions {
 }
 
 function generateDeflyWalletConnectModalActions({
-  shouldUseSound
-}: DeflyWalletModalConfig) {
+                                                  shouldUseSound
+                                                }: DeflyWalletModalConfig) {
   return {
     open: openDeflyWalletConnectModal({
       shouldUseSound
@@ -63,7 +63,7 @@ class DeflyWalletConnect {
   chainId?: number;
 
   constructor(options?: DeflyWalletConnectOptions) {
-    this.bridge = options?.bridge || "";
+    this.bridge = options?.bridge || '';
 
     if (options?.deep_link) {
       getLocalStorage()?.setItem(
@@ -85,12 +85,12 @@ class DeflyWalletConnect {
 
     getLocalStorage()?.setItem(
       DEFLY_WALLET_LOCAL_STORAGE_KEYS.NETWORK,
-      options?.network || "mainnet"
+      options?.network || 'mainnet'
     );
 
     this.connector = null;
     this.shouldShowSignTxnToast =
-      typeof options?.shouldShowSignTxnToast === "undefined"
+      typeof options?.shouldShowSignTxnToast === 'undefined'
         ? true
         : options.shouldShowSignTxnToast;
 
@@ -102,14 +102,14 @@ class DeflyWalletConnect {
   }
 
   get isConnected() {
-    if (this.platform === "mobile") {
+    if (this.platform === 'mobile') {
       return !!this.connector;
     }
 
     return false;
   }
 
-  connect() {
+  connect({ network }: { network?: DeflyWalletNetwork } = {}) {
     return new Promise<string[]>(async (resolve, reject) => {
       try {
         // check if already connected and kill session first before creating a new one.
@@ -118,15 +118,19 @@ class DeflyWalletConnect {
           await this.connector.killSession();
         }
 
+        if (network) {
+          // override network if provided
+          getLocalStorage()?.setItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.NETWORK, network);
+        }
         const {
           bridgeURL,
           shouldUseSound
-        } = await getDeflyConnectConfig(this.network);
+        } = await getDeflyConnectConfig(network || this.network);
 
 
         // Create Connector instance
         this.connector = new WalletConnect({
-          bridge: this.bridge || bridgeURL || "https://bridge.walletconnect.org",
+          bridge: this.bridge || bridgeURL || 'https://bridge.walletconnect.org',
           qrcodeModal: generateDeflyWalletConnectModalActions({
             shouldUseSound
           })
@@ -142,27 +146,27 @@ class DeflyWalletConnect {
         );
 
         const deflyWalletConnectModal = deflyWalletConnectModalWrapper
-          ?.querySelector("defly-wallet-connect-modal")
+          ?.querySelector('defly-wallet-connect-modal')
           ?.shadowRoot?.querySelector(`.${DEFLY_WALLET_MODAL_CLASSNAME}`);
 
         const closeButton = deflyWalletConnectModal
-          ?.querySelector("defly-wallet-modal-header")
-          ?.shadowRoot?.getElementById("defly-wallet-modal-header-close-button");
+          ?.querySelector('defly-wallet-modal-header')
+          ?.shadowRoot?.getElementById('defly-wallet-modal-header-close-button');
 
-        closeButton?.addEventListener("click", () => {
+        closeButton?.addEventListener('click', () => {
           reject(
             new DeflyWalletConnectError(
               {
-                type: "CONNECT_MODAL_CLOSED"
+                type: 'CONNECT_MODAL_CLOSED'
               },
-              "Connect modal is closed by user"
+              'Connect modal is closed by user'
             )
           );
 
           removeModalWrapperFromDOM(DEFLY_WALLET_CONNECT_MODAL_ID);
         });
 
-        this.connector.on("connect", (error, _payload) => {
+        this.connector.on('connect', (error, _payload) => {
           if (error) {
             reject(error);
           }
@@ -173,12 +177,12 @@ class DeflyWalletConnect {
         });
       } catch (error: any) {
 
-        const {name} = getDeflyWalletAppMeta();
+        const { name } = getDeflyWalletAppMeta();
 
         reject(
           new DeflyWalletConnectError(
             {
-              type: "SESSION_CONNECT",
+              type: 'SESSION_CONNECT',
               detail: error
             },
             error.message || `There was an error while connecting to ${name}`
@@ -198,7 +202,7 @@ class DeflyWalletConnect {
           resolve(this.connector.accounts || []);
         }
 
-        this.bridge = getWalletConnectObjectFromStorage()?.bridge || "";
+        this.bridge = getWalletConnectObjectFromStorage()?.bridge || '';
 
         if (this.bridge) {
           this.connector = new WalletConnect({
@@ -218,12 +222,12 @@ class DeflyWalletConnect {
         // If the bridge is not active, then disconnect
         await this.disconnect();
 
-        const {name} = getDeflyWalletAppMeta();
+        const { name } = getDeflyWalletAppMeta();
 
         reject(
           new DeflyWalletConnectError(
             {
-              type: "SESSION_RECONNECT",
+              type: 'SESSION_RECONNECT',
               detail: error
             },
             error.message || `There was an error while reconnecting to ${name}`
@@ -246,29 +250,37 @@ class DeflyWalletConnect {
   }
 
   private async signTransactionWithMobile(signTxnRequestParams: DeflyWalletTransaction[]) {
-    const formattedSignTxnRequest = formatJsonRpcRequest("algo_signTxn", [
+    const formattedSignTxnRequest = formatJsonRpcRequest('algo_signTxn', [
       signTxnRequestParams
     ]);
 
     try {
       try {
-        const response = await this.connector!.sendCustomRequest(formattedSignTxnRequest);
+        const { silent } = await getDeflyConnectConfig(this.network);
+
+        const response = await this.connector!.sendCustomRequest(
+          formattedSignTxnRequest,
+          {
+            forcePushNotification: !silent
+          }
+        );
+
         // We send the full txn group to the mobile wallet.
         // Therefore, we first filter out txns that were not signed by the wallet.
         // These are received as `null`.
         const nonNullResponse = response.filter(Boolean) as (string | number[])[];
 
-        return typeof nonNullResponse[0] === "string"
+        return typeof nonNullResponse[0] === 'string'
           ? (nonNullResponse as string[]).map(base64ToUint8Array)
           : (nonNullResponse as number[][]).map((item) => Uint8Array.from(item));
       } catch (error) {
-        return Promise.reject(
+        return await Promise.reject(
           new DeflyWalletConnectError(
             {
-              type: "SIGN_TRANSACTIONS",
+              type: 'SIGN_TRANSACTIONS',
               detail: error
             },
-            error.message || "Failed to sign transaction"
+            error.message || 'Failed to sign transaction'
           )
         );
       }
@@ -279,13 +291,14 @@ class DeflyWalletConnect {
   }
 
 
-  signTransaction(
+  // eslint-disable-next-line require-await
+  async signTransaction(
     txGroups: SignerTransaction[][],
     signerAddress?: string
   ): Promise<Uint8Array[]> {
     const walletDetails = getWalletDetailsFromStorage();
 
-    if (walletDetails?.type === "defly-wallet") {
+    if (walletDetails?.type === 'defly-wallet') {
       if (isMobile()) {
         // This is to automatically open the wallet app when trying to sign with it.
         openDeflyWalletRedirectModal();
@@ -295,14 +308,14 @@ class DeflyWalletConnect {
       }
 
       if (!this.connector) {
-        throw new Error("DeflyWalletConnect was not initialized correctly.");
+        throw new Error('DeflyWalletConnect was not initialized correctly.');
       }
     }
 
     // Prepare transactions to be sent to wallet
     const signTxnRequestParams = txGroups.flatMap((txGroup) =>
       txGroup.map<DeflyWalletTransaction>((txGroupDetail) => {
-        let signers: DeflyWalletTransaction["signers"];
+        let signers: DeflyWalletTransaction['signers'];
 
         if (signerAddress && !(txGroupDetail.signers || []).includes(signerAddress)) {
           signers = [];

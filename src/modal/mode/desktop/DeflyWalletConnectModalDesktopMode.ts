@@ -3,7 +3,6 @@ import ArrowLeft from '../../../asset/icon/Left.svg';
 import AppStoreIcon from '../../../asset/icon/AppStoreIcon.svg';
 import PlayStoreIcon from '../../../asset/icon/PlayStoreIcon.svg';
 import DeflyWalletLogoWithBlackBackground from '../../../asset/icon/DeflyWalletWithBlackBackground.svg';
-import DeflyDownloadQRCode from '../../../asset/img/DeflyWalletDownloadQRCode.png';
 
 import QRCodeStyling from 'qr-code-styling';
 
@@ -48,9 +47,7 @@ const deflyWalletConnectModalDesktopModeDefaultView = `
             Download Defly Wallet
           </h1>
 
-          <div class="defly-wallet-download-qr-code-wrapper">
-            <img class="defly-wallet-download-qr-code__image" src="${DeflyDownloadQRCode}" alt="Download QR Code"/>
-          </div>
+          <defly-wallet-download-qr-code></defly-wallet-download-qr-code>
 
           <div class="defly-wallet-connect-modal-download-defly-view__footer">
             <a
