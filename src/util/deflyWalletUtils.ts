@@ -31,14 +31,21 @@ function getDeflyWalletAppMeta(): AppMeta {
   return {
     logo: DeflyWalletLogo,
     name: "Defly Wallet",
-    main_color: "#ffee55"
+    main_color: "#131313"
   };
+}
+
+function generateEmbeddedWalletURL(url: string) {
+  const newURL = new URL(url);
+
+  newURL.searchParams.append("embedded", "true");
+
+  return newURL.toString();
 }
 
 /**
  * @param {string} uri WalletConnect uri
  * @returns {string} Defly Wallet deeplink
- *
  */
 function generateDeflyWalletConnectDeepLink(uri: string): string {
   let appDeepLink = generateDeflyWalletAppDeepLink(false);
@@ -65,5 +72,6 @@ function generateDeflyWalletConnectDeepLink(uri: string): string {
 export {
   generateDeflyWalletAppDeepLink,
   getDeflyWalletAppMeta,
-  generateDeflyWalletConnectDeepLink
+  generateDeflyWalletConnectDeepLink,
+  generateEmbeddedWalletURL
 };

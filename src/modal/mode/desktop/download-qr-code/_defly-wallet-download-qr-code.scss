@@ -1,0 +1,19 @@
+@import "../../../../ui/styles/media-queries";
+
+.defly-wallet-download-qr-code-wrapper {
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0 12px 32px rgb(26 35 91 / 10%);
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+@include for-small-screens {
+  .defly-wallet-download-qr-code-wrapper {
+    margin-top: 32px;
+  }
+}

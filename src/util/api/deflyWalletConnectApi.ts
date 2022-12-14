@@ -1,46 +1,56 @@
-import {shuffleArray} from "../array/arrayUtils";
-import {DEFLY_WALLET_LOCAL_STORAGE_KEYS} from "../storage/storageConstants";
-import {getLocalStorage} from "../storage/storageUtils";
-import fetcher from "./fetcher";
+import { shuffleArray } from '../array/arrayUtils';
+import { DeflyWalletNetwork } from '../deflyWalletTypes';
+import fetcher from './fetcher';
+import { DeflyWalletConfig } from './deflyWalletConnectApiTypes';
 
-const BRIDGE_SERVERS_URL = "https://static.defly.app/wc-bridge-servers.json";
+const DEFLY_CONNECT_CONFIG_URL = 'https://static.defly.app/wc-bridge-servers.json';
+const DEFLY_CONNECT_CONFIG_STAGING_URL = 'https://static.defly.app/wc-bridge-servers.json';
 
 /**
- * @returns {string[]} Bridge server list
+ * @returns {object} {use_sound: boolean, servers: string[]}
  */
-function listBridgeServers() {
+function fetchDeflyConnectConfig(network: DeflyWalletNetwork) {
+  const configURL =
+    network === 'mainnet' ? DEFLY_CONNECT_CONFIG_URL : DEFLY_CONNECT_CONFIG_STAGING_URL;
+
   return fetcher<{
+    use_sound: boolean;
     servers: string[];
-  }>(BRIDGE_SERVERS_URL);
+    silent: boolean | undefined;
+  }>(configURL, { cache: 'no-store' });
 }
 
-/**
- * If there's a bridge URL in local storage returns it
- * otherwise fetches the available servers and picks a random one and saves it to local storage
- *
- * @returns {string} Bridge URL
- */
-async function assignBridgeURL() {
-  // Retrieve bridge from local storage
-  const bridgeURL = getLocalStorage()?.getItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.BRIDGE_URL);
 
-  // User is already assigned to a bridge
-  // No need to retrieve new one
-  if (bridgeURL) {
-    return bridgeURL;
+/**
+ * @returns {object} {bridgeURL: string, shouldUseSound: boolean}
+ */
+async function getDeflyConnectConfig(network: DeflyWalletNetwork) {
+  let deflyWalletConfig: DeflyWalletConfig = {
+    bridgeURL: '',
+    shouldUseSound: true,
+    silent: false
+  };
+
+  try {
+    const response = await fetchDeflyConnectConfig(network);
+
+
+    if (typeof response.use_sound !== 'undefined') {
+      deflyWalletConfig.shouldUseSound = response.use_sound!;
+    }
+
+    if (typeof response.silent !== 'undefined') {
+      deflyWalletConfig.silent = response.silent!;
+    }
+    deflyWalletConfig = {
+      ...deflyWalletConfig,
+      bridgeURL: shuffleArray(response.servers || [])[0] || ''
+    };
+  } catch (error) {
+    console.log(error);
   }
 
-  // User is not assigned to a bridge
-  // Retrieve available bridges
-  const response = await listBridgeServers();
-
-  // Pick a random bridge
-  const newBridgeURL = shuffleArray(response.servers)[0];
-
-  // Save bridge URL to local storage
-  getLocalStorage()?.setItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.BRIDGE_URL, newBridgeURL);
-
-  return newBridgeURL;
+  return deflyWalletConfig;
 }
 
-export {assignBridgeURL, listBridgeServers};
+export { getDeflyConnectConfig, fetchDeflyConnectConfig };

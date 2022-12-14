@@ -1,0 +1,58 @@
+.defly-wallet-connect-modal-touch-screen-mode {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 46px;
+  padding: 4px;
+}
+
+.defly-wallet-connect-modal-touch-screen-mode--pending-message-view {
+  gap: 56px;
+  grid-template-rows: auto 48px;
+  height: 100%;
+  padding-bottom: 70px;
+}
+
+.defly-wallet-connect-modal-touch-screen-mode__launch-defly-wallet-button,
+.defly-wallet-connect-modal-touch-screen-mode__install-defly-wallet-button {
+  display: block;
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  line-height: 26px;
+  letter-spacing: -0.09px;
+  font-weight: 500;
+  margin: 0 40px;
+}
+
+.defly-wallet-connect-modal-touch-screen-mode__launch-defly-wallet-button {
+  margin-bottom: 45px;
+  background: linear-gradient(90deg, #3E38B9, #413AAA);
+  color: #ffffff;
+}
+
+.defly-wallet-connect-modal-touch-screen-mode__install-defly-wallet-button {
+  margin-bottom: 20px;
+  background-color: #494949;
+  color: #ffffff;
+}
+
+.defly-wallet-connect-modal-touch-screen-mode__new-to-defly-box {
+  position: relative;
+  margin-bottom: 5px;
+
+}
+
+.defly-wallet-connect-modal-touch-screen-mode__new-to-defly-box__text {
+  color: #999999;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.04px;
+  text-align: center;
+
+  a {
+    color: inherit;
+  }
+}

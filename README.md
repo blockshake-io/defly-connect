@@ -3,7 +3,7 @@
 
 JavaScript SDK for integrating [Defly Wallet](https://defly.app) to web applications. For more detailed information, please check our [Defly Manual](https://docs.defly.app/app/overview/).
 
-This is a fork of the Pera connect JavaScript SDK, for more details visit [Pera connect](https://github.com/perawallet/connect) on github.
+This is a fork of the Defly connect JavaScript SDK, for more details visit [Defly connect](https://github.com/blockshake-io/defly-connect) on github.
 
 ### Quick Start
 
