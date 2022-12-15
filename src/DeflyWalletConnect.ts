@@ -131,6 +131,7 @@ class DeflyWalletConnect {
         // Create Connector instance
         this.connector = new WalletConnect({
           bridge: this.bridge || bridgeURL || 'https://bridge.walletconnect.org',
+          storageId: DEFLY_WALLET_LOCAL_STORAGE_KEYS.WALLETCONNECT,
           qrcodeModal: generateDeflyWalletConnectModalActions({
             shouldUseSound
           })
@@ -206,7 +207,8 @@ class DeflyWalletConnect {
 
         if (this.bridge) {
           this.connector = new WalletConnect({
-            bridge: this.bridge
+            bridge: this.bridge,
+            storageId: DEFLY_WALLET_LOCAL_STORAGE_KEYS.WALLETCONNECT,
           });
 
           resolve(this.connector?.accounts || []);
