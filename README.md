@@ -64,6 +64,70 @@ try {
 }
 ```
 
+## Options
+
+| option                   | default   | value                                 |          |
+| ------------------------ | --------- | ------------------------------------- | -------- |
+| `network`                | `mainnet` | `dev`, `testnet`, `mainnet`           | optional |
+| `chainId`                | `4160`    | `416001`, `416002`, `416003` , `4160` | optional |
+| `shouldShowSignTxnToast` | `true`    | `boolean`                             | optional |
+
+#### **`network`**
+
+Determines which Web Wallet URL is to be used. Most of the time, you don't need to provide it. If you specifically want to use the Testnet version of Web Wallet for development purposes, simply provide `network: testnet` to the `DeflyWalletConnect` constructor.
+
+#### **`chainId`**
+
+Determines which Algorand network your dApp uses.
+
+**MainNet**: 416001
+
+**TestNet**: 416002
+
+**BetaNet**: 416003
+
+**All Networks**: 4160
+
+#### **`shouldShowSignTxnToast`**
+
+It's enabled by default but in some cases, you may not need the toast message (e.g. you already have signing guidance for users). To disable it, use the shouldShowSignTxnToast option:
+
+## Methods
+
+#### `DeflyWalletConnect.connect(): Promise<string[]>`
+
+| option    | default   | value                       |          |
+| --------- | --------- | --------------------------- | -------- |
+| `network` | `mainnet` | `dev`, `testnet`, `mainnet` | optional |
+
+Starts the initial connection flow and returns the array of account addresses.
+
+`network` param of the `connect` method overrides the initial `network` on the constructor.
+
+```javascript
+DeflyWalletConnect.connect({network: "testnet"}); //optional
+```
+
+#### `DeflyWalletConnect.reconnectSession(): Promise<string[]>`
+
+Reconnects to the wallet if there is any active connection and returns the array of account addresses.
+
+#### `DeflyWalletConnect.disconnect(): Promise<void | undefined>`
+
+Disconnects from the wallet and resets the related storage items.
+
+#### `DeflyWalletConnect.platform: DeflyWalletPlatformType`
+
+Returns the platform of the active session. Possible responses: _`mobile | null`_
+
+#### `DeflyWalletConnect.isConnected: boolean`
+
+Checks if there's any active session regardless of platform. Possible responses: _`true | false`_
+
+#### `DeflyWalletConnect.signTransaction(txGroups: SignerTransaction[][], signerAddress?: string): Promise<Uint8Array[]>`
+
+Starts the sign process and returns the signed transaction in `Uint8Array`
+
 ### Customizing Style
 
 You can override the z-index using the `.defly-wallet-connect-modal` class so that the modal does not conflict with another component on your application.
