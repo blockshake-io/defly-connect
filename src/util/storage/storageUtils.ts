@@ -3,7 +3,6 @@ import {IWalletConnectSession} from "@walletconnect/types";
 
 import {
   DeflyWalletDetails,
-  DeflyWalletNetwork,
   DeflyWalletPlatformType
 } from "../deflyWalletTypes";
 import {DEFLY_WALLET_LOCAL_STORAGE_KEYS} from "./storageConstants";
@@ -38,14 +37,6 @@ function getWalletDetailsFromStorage(): DeflyWalletDetails | null {
   return null;
 }
 
-function getNetworkFromStorage(): DeflyWalletNetwork {
-  const storedNetwork = getLocalStorage()?.getItem(
-    DEFLY_WALLET_LOCAL_STORAGE_KEYS.NETWORK
-  ) as DeflyWalletNetwork;
-
-  return storedNetwork || "mainnet";
-}
-
 function getWalletConnectObjectFromStorage(): IWalletConnectSession | null {
   const storedWalletConnectObject = getLocalStorage()?.getItem(
     DEFLY_WALLET_LOCAL_STORAGE_KEYS.WALLETCONNECT
@@ -63,7 +54,6 @@ function resetWalletDetailsFromStorage() {
     try {
       getLocalStorage()?.removeItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.WALLETCONNECT);
       getLocalStorage()?.removeItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.WALLET);
-      getLocalStorage()?.removeItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.NETWORK);
       resolve(undefined);
     } catch (error) {
       reject(error);
@@ -87,7 +77,6 @@ export {
   saveWalletDetailsToStorage,
   resetWalletDetailsFromStorage,
   getWalletDetailsFromStorage,
-  getNetworkFromStorage,
   getWalletConnectObjectFromStorage,
   getWalletPlatformFromStorage
 };

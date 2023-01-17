@@ -1,10 +1,4 @@
-interface AppMeta {
-  logo: string;
-  name: string;
-  main_color: string;
-}
 
-type DeflyWalletNetwork = "dev" | "testnet" | "mainnet";
 type DeflyWalletType = "defly-wallet";
 type DeflyWalletPlatformType = "mobile" | null;
 
@@ -18,8 +12,6 @@ interface DeflyWalletDetails {
 }
 
 export type {
-  AppMeta,
-  DeflyWalletNetwork,
   DeflyWalletType,
   DeflyWalletPlatformType,
   DeflyWalletDetails,

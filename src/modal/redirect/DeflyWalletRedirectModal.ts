@@ -12,6 +12,7 @@ const deflyWalletRedirectModalTemplate = document.createElement("template");
 deflyWalletRedirectModalTemplate.innerHTML = `
   <div class="defly-wallet-modal defly-wallet-modal--mobile">
     <div class="defly-wallet-modal__body">
+    <defly-wallet-modal-header modal-id="${DEFLY_WALLET_REDIRECT_MODAL_ID}"></pera-wallet-modal-header/>
       <div class="defly-wallet-redirect-modal">
         <div class="defly-wallet-redirect-modal__content">
           <img src="${DeflyRedirectIcon}" />
@@ -80,20 +81,18 @@ export class DeflyWalletRedirectModal extends HTMLElement {
 
       launchDeflyLink?.addEventListener("click", () => {
         this.onClose();
+        window.open(generateDeflyWalletAppDeepLink(), "_blank");
       });
-
-      launchDeflyLink?.setAttribute("href", generateDeflyWalletAppDeepLink());
     }
   }
 
   connectedCallback() {
-    const deflyWalletDeepLink = window.open(generateDeflyWalletAppDeepLink());
+    const deflyWalletDeepLink = window.open(generateDeflyWalletAppDeepLink(), "_blank");
 
-    if (deflyWalletDeepLink) {
-      deflyWalletDeepLink.addEventListener("load", () => {
-        this.onClose();
-      });
+    if (deflyWalletDeepLink && !deflyWalletDeepLink.closed) {
+      this.onClose();
     }
+
   }
 
   onClose() {

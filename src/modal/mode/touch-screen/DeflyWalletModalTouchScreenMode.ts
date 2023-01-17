@@ -1,11 +1,7 @@
-import {
-  generateDeflyWalletConnectDeepLink,
-  getDeflyWalletAppMeta
-} from "../../../util/deflyWalletUtils";
+import { generateDeflyWalletConnectDeepLink } from "../../../util/deflyWalletUtils";
 import styles from "./_defly-wallet-modal-touch-screen-mode.scss";
 
 const deflyWalletModalTouchScreenMode = document.createElement("template");
-const {name} = getDeflyWalletAppMeta();
 
 const touchScreenDefaultMode = `
   <div class="defly-wallet-connect-modal-touch-screen-mode">
@@ -17,7 +13,7 @@ const touchScreenDefaultMode = `
         class="defly-wallet-connect-modal-touch-screen-mode__launch-defly-wallet-button"
         rel="noopener noreferrer"
         target="_blank">
-        Launch ${name}
+        Launch Defaly Wallet
       </a>
 
       <div
@@ -32,7 +28,7 @@ const touchScreenDefaultMode = `
         class="defly-wallet-connect-modal-touch-screen-mode__install-defly-wallet-button"
         rel="noopener noreferrer"
         target="_blank">
-        Install ${name}
+        Install Defaly Wallet
       </a>
     </div>
   </div>
