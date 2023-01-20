@@ -1,11 +1,9 @@
 import QrIcon from '../../../asset/icon/Qr.svg';
+import DeflyWalletLogo from "../../../asset/icon/DeflyWallet.svg";
 
-import {getDeflyWalletAppMeta} from "../../../util/deflyWalletUtils";
 import styles from "./_defly-wallet-connect-modal-information-section.scss";
 import {isMobile} from "../../../util/device/deviceUtils";
 
-
-const {logo, name} = getDeflyWalletAppMeta();
 
 const deflyWalletConnectModalInformationSectionTemplate = document.createElement("template");
 const informationSectionClassNames = isMobile()
@@ -14,7 +12,7 @@ const informationSectionClassNames = isMobile()
 
 deflyWalletConnectModalInformationSectionTemplate.innerHTML = `
   <section class="${informationSectionClassNames}">
-    <img src="${logo}" class="defly-wallet-connect-modal-information-section__defly-icon" alt="${name}" />
+    <img src="${DeflyWalletLogo}" class="defly-wallet-connect-modal-information-section__defly-icon" alt="Defly Wallet" />
     <h1 class="defly-wallet-connect-modal-information-section__title">${"Secure \n wallet & \n trading"}</h1>
  
     <button

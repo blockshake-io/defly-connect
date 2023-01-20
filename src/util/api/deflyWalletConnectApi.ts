@@ -1,21 +1,18 @@
 import { shuffleArray } from '../array/arrayUtils';
-import { DeflyWalletNetwork } from '../deflyWalletTypes';
 import fetcher from './fetcher';
 import { DeflyWalletConfig } from './deflyWalletConnectApiTypes';
 
 const DEFLY_CONNECT_CONFIG_URL = 'https://static.defly.app/wc-bridge-servers.json';
-const DEFLY_CONNECT_CONFIG_STAGING_URL = 'https://static.defly.app/wc-bridge-servers.json';
 
 /**
  * @returns {object} {use_sound: boolean, servers: string[]}
  */
-function fetchDeflyConnectConfig(network: DeflyWalletNetwork) {
-  const configURL =
-    network === 'mainnet' ? DEFLY_CONNECT_CONFIG_URL : DEFLY_CONNECT_CONFIG_STAGING_URL;
+function fetchDeflyConnectConfig() {
+  const configURL = DEFLY_CONNECT_CONFIG_URL;
 
   return fetcher<{
-    use_sound: boolean;
-    servers: string[];
+    use_sound: boolean | undefined;
+    servers: string[] | undefined;
     silent: boolean | undefined;
   }>(configURL, { cache: 'no-store' });
 }
@@ -24,7 +21,7 @@ function fetchDeflyConnectConfig(network: DeflyWalletNetwork) {
 /**
  * @returns {object} {bridgeURL: string, shouldUseSound: boolean}
  */
-async function getDeflyConnectConfig(network: DeflyWalletNetwork) {
+async function getDeflyConnectConfig() {
   let deflyWalletConfig: DeflyWalletConfig = {
     bridgeURL: '',
     shouldUseSound: true,
@@ -32,7 +29,7 @@ async function getDeflyConnectConfig(network: DeflyWalletNetwork) {
   };
 
   try {
-    const response = await fetchDeflyConnectConfig(network);
+    const response = await fetchDeflyConnectConfig();
 
 
     if (typeof response.use_sound !== 'undefined') {

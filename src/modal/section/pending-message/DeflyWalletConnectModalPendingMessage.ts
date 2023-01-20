@@ -1,25 +1,24 @@
-import HelpIcon from "../../../asset/icon/Help.svg";
-import SendIcon from "../../../asset/icon/Send.svg";
+import HelpIcon from '../../../asset/icon/Help.svg';
+import SendIcon from '../../../asset/icon/Send.svg';
+import DeflyWalletLogo from '../../../asset/icon/DeflyWallet.svg';
 
-import {getDeflyWalletAppMeta} from "../../../util/deflyWalletUtils";
 import {
   DEFLY_WALLET_CONNECT_MODAL_ID,
   removeModalWrapperFromDOM
-} from "../../deflyWalletConnectModalUtils";
-import styles from "./_defly-wallet-connect-modal-pending-message.scss";
-import {isIOS} from "../../../util/device/deviceUtils";
+} from '../../deflyWalletConnectModalUtils';
+import styles from './_defly-wallet-connect-modal-pending-message.scss';
+import { isIOS } from '../../../util/device/deviceUtils';
 import {
   CONNECT_AUDIO_URL,
   CONNECT_TIMEOUT_INTERVAL
-} from "./util/deflyWalletConnectModalPendingMessageConstants";
+} from './util/deflyWalletConnectModalPendingMessageConstants';
 
-const {logo} = getDeflyWalletAppMeta();
-const deflyWalletConnectModalPendingMessageTemplate = document.createElement("template");
+const deflyWalletConnectModalPendingMessageTemplate = document.createElement('template');
 
 deflyWalletConnectModalPendingMessageTemplate.innerHTML = `
   <div class="defly-wallet-connect-modal-pending-message-section">
     <div class="defly-wallet-connect-modal-pending-message">
-      <img src="${logo}" alt="Defly Wallet Logo" />
+      <img src="${DeflyWalletLogo}" alt="Defly Wallet Logo" />
 
       <div class="defly-wallet-connect-modal-pending-message__text">
         Please wait while we connect you to Defly Wallet...
@@ -39,7 +38,7 @@ deflyWalletConnectModalPendingMessageTemplate.innerHTML = `
 const deflyWalletConnectTryAgainView = `
   <div class="defly-wallet-connect-modal-pending-message--try-again-view">
     <div>
-      <img class="defly-wallet-connect-modal-pending-message--try-again-view__image" src="${logo}" alt="Defly Wallet Logo" />
+      <img class="defly-wallet-connect-modal-pending-message--try-again-view__image" src="${DeflyWalletLogo}" alt="Defly Wallet" />
 
       <h1 class="defly-wallet-connect-modal-pending-message--try-again-view__title">
         Couldn’t establish connection
@@ -90,10 +89,10 @@ const deflyWalletConnectTryAgainView = `
 export class DeflyWalletConnectModalPendingMessageSection extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({mode: "open"});
+    this.attachShadow({ mode: 'open' });
 
     if (this.shadowRoot) {
-      const styleSheet = document.createElement("style");
+      const styleSheet = document.createElement('style');
 
       styleSheet.textContent = styles;
 
@@ -106,10 +105,10 @@ export class DeflyWalletConnectModalPendingMessageSection extends HTMLElement {
 
   connectedCallback() {
     const cancelButton = this.shadowRoot?.getElementById(
-      "defly-wallet-connect-modal-pending-message-cancel-button"
+      'defly-wallet-connect-modal-pending-message-cancel-button'
     );
 
-    cancelButton?.addEventListener("click", () => {
+    cancelButton?.addEventListener('click', () => {
       this.onClose();
     });
 
@@ -120,11 +119,11 @@ export class DeflyWalletConnectModalPendingMessageSection extends HTMLElement {
         deflyWalletConnectTryAgainView;
 
       if (this.shadowRoot) {
-        const styleSheet = document.createElement("style");
+        const styleSheet = document.createElement('style');
 
         styleSheet.textContent = styles;
 
-        this.shadowRoot.innerHTML = "";
+        this.shadowRoot.innerHTML = '';
 
         this.shadowRoot.append(
           deflyWalletConnectModalPendingMessageTemplate.content.cloneNode(true),
@@ -132,10 +131,10 @@ export class DeflyWalletConnectModalPendingMessageSection extends HTMLElement {
         );
 
         const tryAgainButton = this.shadowRoot?.getElementById(
-          "defly-wallet-connect-modal-pending-message-try-again-button"
+          'defly-wallet-connect-modal-pending-message-try-again-button'
         );
 
-        tryAgainButton?.addEventListener("click", () => {
+        tryAgainButton?.addEventListener('click', () => {
           this.onClose();
         });
       }
@@ -147,14 +146,14 @@ export class DeflyWalletConnectModalPendingMessageSection extends HTMLElement {
   }
 
   addAudioForConnection() {
-    const shouldUseSound = this.getAttribute("should-use-sound");
+    const shouldUseSound = this.getAttribute('should-use-sound');
 
-    if (shouldUseSound === "true" && isIOS()) {
+    if (shouldUseSound === 'true' && isIOS()) {
       const connectAudioWrapper = this.shadowRoot?.getElementById(
-        "defly-wallet-connect-modal-pending-message-audio-wrapper"
+        'defly-wallet-connect-modal-pending-message-audio-wrapper'
       );
 
-      const audio = document.createElement("audio");
+      const audio = document.createElement('audio');
 
       audio.src = CONNECT_AUDIO_URL;
       audio.autoplay = true;

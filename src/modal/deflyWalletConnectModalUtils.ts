@@ -1,8 +1,6 @@
 import DeflyWalletConnectError from '../util/DeflyWalletConnectError';
 import { waitForElementCreatedAtShadowDOM } from '../util/dom/domUtils';
 
-export type DEFLY_CONNECT_MODAL_VIEWS = 'default' | 'download-defly';
-
 export interface DeflyWalletModalConfig {
   shouldUseSound: boolean;
 }
@@ -42,6 +40,26 @@ function openDeflyWalletConnectModal(modalConfig: DeflyWalletModalConfig) {
       root.innerHTML = `<defly-wallet-connect-modal uri="${newURI}" should-use-sound="${shouldUseSound}"></defly-wallet-connect-modal>`;
     }
   };
+}
+
+function setupDeflyWalletConnectModalCloseListener(onClose: VoidFunction) {
+  const deflyWalletConnectModalWrapper = document.getElementById(
+    DEFLY_WALLET_CONNECT_MODAL_ID
+  );
+
+  const deflyWalletConnectModal = deflyWalletConnectModalWrapper
+    ?.querySelector("defly-wallet-connect-modal")
+    ?.shadowRoot?.querySelector(`.${DEFLY_WALLET_MODAL_CLASSNAME}`);
+
+  const closeButton = deflyWalletConnectModal
+    ?.querySelector("defly-wallet-modal-header")
+    ?.shadowRoot?.getElementById("defly-wallet-modal-header-close-button");
+
+  closeButton?.addEventListener("click", () => {
+    onClose();
+
+    removeModalWrapperFromDOM(DEFLY_WALLET_CONNECT_MODAL_ID);
+  });
 }
 
 /**
@@ -115,6 +133,7 @@ export {
   DEFLY_WALLET_SIGN_TXN_MODAL_ID,
   DEFLY_WALLET_MODAL_CLASSNAME,
   openDeflyWalletConnectModal,
+  setupDeflyWalletConnectModalCloseListener,
   openDeflyWalletRedirectModal,
   openDeflyWalletSignTxnToast,
   closeDeflyWalletSignTxnToast,

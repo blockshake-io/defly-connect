@@ -5,6 +5,10 @@ import CloseIconLight from "../../asset/icon/Close--light.svg";
 import styles from "./_defly-wallet-modal-header.scss";
 import {isSmallScreen} from "../../util/screen/screenSizeUtils";
 import {isMobile} from "../../util/device/deviceUtils";
+import {
+  DEFLY_WALLET_REDIRECT_MODAL_ID,
+  removeModalWrapperFromDOM
+} from "../deflyWalletConnectModalUtils";
 
 const deflyWalletModalHeader = document.createElement("template");
 
@@ -47,6 +51,19 @@ export class DeflyWalletModalHeader extends HTMLElement {
       styleSheet.textContent = styles;
 
       this.shadowRoot.append(deflyWalletModalHeader.content.cloneNode(true), styleSheet);
+      this.onClose();
+    }
+  }
+  onClose() {
+    const closeButton = this.shadowRoot?.getElementById(
+      "defly-wallet-modal-header-close-button"
+    );
+    const modalId = this.getAttribute("modal-id");
+
+    if (closeButton && modalId === DEFLY_WALLET_REDIRECT_MODAL_ID) {
+      closeButton.addEventListener("click", () => {
+        removeModalWrapperFromDOM(DEFLY_WALLET_REDIRECT_MODAL_ID);
+      });
     }
   }
 }

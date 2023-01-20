@@ -1,15 +1,8 @@
-import DeflyWalletLogo from "../asset/icon/DeflyWallet.svg";
-
 import {detectBrowser, isAndroid, isIOS} from "./device/deviceUtils";
 import {DEFLY_WALLET_APP_DEEP_LINK} from "./deflyWalletConstants";
-import {AppMeta} from "./deflyWalletTypes";
-import {DEFLY_WALLET_LOCAL_STORAGE_KEYS} from "./storage/storageConstants";
-import {getLocalStorage} from "./storage/storageUtils";
 
 function generateDeflyWalletAppDeepLink(shouldAddBrowserName = true): string {
-  let appDeepLink =
-    getLocalStorage()?.getItem(DEFLY_WALLET_LOCAL_STORAGE_KEYS.DEEP_LINK) ||
-    DEFLY_WALLET_APP_DEEP_LINK;
+  let appDeepLink = DEFLY_WALLET_APP_DEEP_LINK;
   const browserName = detectBrowser();
 
   if (shouldAddBrowserName && browserName) {
@@ -17,22 +10,6 @@ function generateDeflyWalletAppDeepLink(shouldAddBrowserName = true): string {
   }
 
   return appDeepLink;
-}
-
-function getDeflyWalletAppMeta(): AppMeta {
-  const storedAppMeta = getLocalStorage()?.getItem(
-    DEFLY_WALLET_LOCAL_STORAGE_KEYS.APP_META
-  );
-
-  if (storedAppMeta) {
-    return JSON.parse(storedAppMeta) as AppMeta;
-  }
-
-  return {
-    logo: DeflyWalletLogo,
-    name: "Defly Wallet",
-    main_color: "#131313"
-  };
 }
 
 function generateEmbeddedWalletURL(url: string) {
@@ -71,7 +48,6 @@ function generateDeflyWalletConnectDeepLink(uri: string): string {
 
 export {
   generateDeflyWalletAppDeepLink,
-  getDeflyWalletAppMeta,
   generateDeflyWalletConnectDeepLink,
   generateEmbeddedWalletURL
 };
