@@ -13,7 +13,7 @@ const touchScreenDefaultMode = `
         class="defly-wallet-connect-modal-touch-screen-mode__launch-defly-wallet-button"
         rel="noopener noreferrer"
         target="_blank">
-        Launch Defaly Wallet
+        Launch Defly Wallet
       </a>
 
       <div
@@ -28,7 +28,7 @@ const touchScreenDefaultMode = `
         class="defly-wallet-connect-modal-touch-screen-mode__install-defly-wallet-button"
         rel="noopener noreferrer"
         target="_blank">
-        Install Defaly Wallet
+        Install Defly Wallet
       </a>
     </div>
   </div>
