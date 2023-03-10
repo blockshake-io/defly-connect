@@ -28,6 +28,7 @@ export default [
       "@evanhahn/lottie-web-light",
       "bowser",
       "qr-code-styling",
+      "lottie-web",
       "bufferutil",
       "utf-8-validate"
     ],
