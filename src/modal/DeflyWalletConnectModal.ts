@@ -1,5 +1,4 @@
 import {isMobile} from "../util/device/deviceUtils";
-import {isSmallScreen} from "../util/screen/screenSizeUtils";
 import {
   DEFLY_WALLET_CONNECT_MODAL_ID,
   DEFLY_WALLET_MODAL_CLASSNAME
@@ -21,7 +20,7 @@ export class DeflyWalletConnectModal extends HTMLElement {
 
       styleSheet.textContent = styles;
 
-      if (isSmallScreen() && isMobile()) {
+      if (isMobile()) {
         deflyWalletConnectModal.innerHTML = `
         <div class="${deflyWalletConnectModalClassNames}">
           <div class="defly-wallet-modal__body" part="body">
