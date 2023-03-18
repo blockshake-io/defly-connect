@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "name": "@blockshake/defly-connect",
   "description": "JavaScript SDK for integrating Defly Wallet to web applications.",
   "main": "dist/index.js",
