@@ -32,7 +32,7 @@ deflyWalletRedirectModalTemplate.innerHTML = `
             <a
               id="defly-wallet-redirect-modal-download-defly-link"
               class="defly-wallet-redirect-modal__content__install-defly-text__link"
-              href="https://deflywallet.app/download/"
+              href="https://defly.app/ "
               rel="noopener noreferrer"
               target="_blank">
               Tap here to install.

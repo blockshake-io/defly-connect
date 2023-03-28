@@ -1,10 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import {IWalletConnectSession} from "@walletconnect/types";
 
-import {
-  DeflyWalletDetails,
-  DeflyWalletPlatformType
-} from "../deflyWalletTypes";
+import {DeflyWalletDetails, DeflyWalletPlatformType } from "../deflyWalletTypes";
 import {DEFLY_WALLET_LOCAL_STORAGE_KEYS} from "./storageConstants";
 
 function getLocalStorage() {
