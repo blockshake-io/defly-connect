@@ -11,9 +11,4 @@ interface DeflyWalletDetails {
   selectedAccount: string;
 }
 
-export type {
-  DeflyWalletType,
-  DeflyWalletPlatformType,
-  DeflyWalletDetails,
-  AlgorandChainIDs
-};
+export type {DeflyWalletType, DeflyWalletPlatformType, DeflyWalletDetails, AlgorandChainIDs};

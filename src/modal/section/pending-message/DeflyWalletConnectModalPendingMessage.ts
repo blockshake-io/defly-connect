@@ -51,7 +51,7 @@ const deflyWalletConnectTryAgainView = `
 
     <div>
       <a
-        href="https://support.deflywallet.app/en/article/resolving-walletconnect-issues-1tolptm/"
+        href=" https://docs.defly.app/app/dapp-browser"
         target="_blank"
         rel="noopener noreferrer"
         class="defly-wallet-connect-modal-pending-message--try-again-view__resolving-anchor">

@@ -20,7 +20,6 @@ import {
   getWalletPlatformFromStorage
 } from './util/storage/storageUtils';
 import { getDeflyConnectConfig } from './util/api/deflyWalletConnectApi';
-import { DEFLY_WALLET_LOCAL_STORAGE_KEYS } from './util/storage/storageConstants';
 import { DeflyWalletTransaction, SignerTransaction } from './util/model/deflyWalletModels';
 import {
   base64ToUint8Array,
@@ -96,7 +95,6 @@ class DeflyWalletConnect {
         // Create Connector instance
         this.connector = new WalletConnect({
           bridge: this.bridge || bridgeURL || 'https://bridge.walletconnect.org',
-          storageId: DEFLY_WALLET_LOCAL_STORAGE_KEYS.WALLETCONNECT,
           qrcodeModal: generateDeflyWalletConnectModalActions({
             shouldUseSound
           })
