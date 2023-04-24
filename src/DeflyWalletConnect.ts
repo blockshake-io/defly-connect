@@ -29,10 +29,11 @@ import {
 import { isMobile } from './util/device/deviceUtils';
 import { AlgorandChainIDs } from './util/deflyWalletTypes';
 
-interface DeflyWalletConnectOptions {
+export interface DeflyWalletConnectOptions {
   bridge?: string;
   shouldShowSignTxnToast?: boolean;
   chainId?: AlgorandChainIDs;
+  sessionStorageId?: string;
 }
 
 function generateDeflyWalletConnectModalActions({ shouldUseSound }: DeflyWalletModalConfig) {
@@ -49,6 +50,7 @@ class DeflyWalletConnect {
   connector: WalletConnect | null;
   shouldShowSignTxnToast: boolean;
   chainId?: number;
+  sessionStorageId: string;
 
   constructor(options?: DeflyWalletConnectOptions) {
     this.bridge = options?.bridge || '';
@@ -60,6 +62,7 @@ class DeflyWalletConnect {
         : options.shouldShowSignTxnToast;
 
     this.chainId = options?.chainId;
+    this.sessionStorageId = options?.sessionStorageId || 'defly-wallet-connect';
   }
 
   get platform() {
@@ -95,6 +98,7 @@ class DeflyWalletConnect {
         // Create Connector instance
         this.connector = new WalletConnect({
           bridge: this.bridge || bridgeURL || 'https://bridge.walletconnect.org',
+          storageId: this.sessionStorageId,
           qrcodeModal: generateDeflyWalletConnectModalActions({
             shouldUseSound
           })
@@ -153,7 +157,8 @@ class DeflyWalletConnect {
 
         if (this.bridge) {
           this.connector = new WalletConnect({
-            bridge: this.bridge
+            bridge: this.bridge,
+            storageId: this.sessionStorageId,
           });
 
           resolve(this.connector?.accounts || []);
