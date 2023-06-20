@@ -36,10 +36,11 @@ interface DeflyWalletConnectOptions {
   chainId?: AlgorandChainIDs;
 }
 
-function generateDeflyWalletConnectModalActions({ shouldUseSound }: DeflyWalletModalConfig) {
+function generateDeflyWalletConnectModalActions({ shouldUseSound, bridge }: DeflyWalletModalConfig) {
   return {
     open: openDeflyWalletConnectModal({
-      shouldUseSound
+      shouldUseSound,
+      bridge
     }),
     close: () => removeModalWrapperFromDOM(DEFLY_WALLET_CONNECT_MODAL_ID)
   };
@@ -92,12 +93,12 @@ class DeflyWalletConnect {
           shouldUseSound
         } = await getDeflyConnectConfig();
 
-
         // Create Connector instance
         this.connector = new WalletConnect({
           bridge: this.bridge || bridgeURL || 'https://bridge.walletconnect.org',
           qrcodeModal: generateDeflyWalletConnectModalActions({
-            shouldUseSound
+            shouldUseSound,
+            bridge: this.bridge || bridgeURL || 'https://bridge.walletconnect.org',
           })
         });
 
