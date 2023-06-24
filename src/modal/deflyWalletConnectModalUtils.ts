@@ -3,7 +3,6 @@ import { waitForElementCreatedAtShadowDOM } from '../util/dom/domUtils';
 
 export interface DeflyWalletModalConfig {
   shouldUseSound: boolean;
-  bridge: string;
 }
 
 // The ID of the wrapper element for DeflyWalletConnectModal
@@ -35,7 +34,7 @@ function openDeflyWalletConnectModal(modalConfig: DeflyWalletModalConfig) {
   return (uri: string) => {
     if (!document.getElementById(DEFLY_WALLET_CONNECT_MODAL_ID)) {
       const root = createModalWrapperOnDOM(DEFLY_WALLET_CONNECT_MODAL_ID);
-      const newURI = `${uri.replace(/bridge=[^&]+/, `bridge=${encodeURIComponent(modalConfig.bridge)}`)}&algorand=true`;
+      const newURI = `${uri}&algorand=true`;
       const { shouldUseSound } = modalConfig;
 
       root.innerHTML = `<defly-wallet-connect-modal uri="${newURI}" should-use-sound="${shouldUseSound}"></defly-wallet-connect-modal>`;
