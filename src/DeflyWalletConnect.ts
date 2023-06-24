@@ -14,7 +14,6 @@ import {
   setupDeflyWalletConnectModalCloseListener
 } from './modal/deflyWalletConnectModalUtils';
 import {
-  getWalletDetailsFromStorage,
   resetWalletDetailsFromStorage,
   saveWalletDetailsToStorage,
   getWalletConnectObjectFromStorage,
@@ -143,13 +142,6 @@ class DeflyWalletConnect {
   reconnectSession() {
     return new Promise<string[]>(async (resolve, reject) => {
       try {
-        const walletDetails = getWalletDetailsFromStorage();
-
-        if (!walletDetails) {
-          resolve([]);
-
-          return;
-        }
 
         // ================================================= //
         // Defly Mobile Wallet flow
