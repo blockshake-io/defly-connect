@@ -43,10 +43,10 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blockshake-io/wallet-connect.git"
+    "url": "git+https://github.com/blockshake-io/defly-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/blockshake-io/wallet-connect/issues"
+    "url": "https://github.com/blockshake-io/defly-connect/issues"
   },
-  "homepage": "https://github.com/blockshake-io/wallet-connect#readme"
+  "homepage": "https://github.com/blockshake-io/defly-connect#readme"
 }
