@@ -1,5 +1,5 @@
-@import "../../defly-wallet-modal";
-@import "../../../ui/styles/util-mixins";
+@use "../../defly-wallet-modal" as *;
+@use "../../../ui/styles/util-mixins" as *;
 
 .defly-wallet-connect-modal-pending-message-section {
   display: grid;

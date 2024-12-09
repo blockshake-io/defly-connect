@@ -1,4 +1,4 @@
-@import "../defly-wallet-modal";
+@use "../defly-wallet-modal" as *;
 
 .defly-wallet-redirect-modal {
   display: grid;

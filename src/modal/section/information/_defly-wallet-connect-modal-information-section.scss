@@ -1,4 +1,4 @@
-@import "../../../ui/styles/media-queries";
+@use "../../../ui/styles/media-queries" as *;
 
 .defly-wallet-connect-modal-information-section {
   padding: 12px;

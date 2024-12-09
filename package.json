@@ -2,7 +2,7 @@
   "version": "1.1.6",
   "name": "@blockshake/defly-connect",
   "description": "JavaScript SDK for integrating Defly Wallet to web applications.",
-  "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "dev": "./node_modules/.bin/rollup -c -w",
     "build": "./node_modules/.bin/rollup -c",
@@ -11,34 +11,35 @@
   "author": "Defly Wallet",
   "license": "ISC",
   "devDependencies": {
-    "@hipo/eslint-config-base": "^4.1.1",
+    "@hipo/eslint-config-base": "^4.3.1",
     "@hipo/eslint-config-typescript": "^1.1.0",
     "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-replace": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
-    "eslint": "^8.12.0",
+    "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.5.0",
-    "node-sass": "^9.0.0",
     "prettier": "^2.6.1",
     "rollup": "^2.70.1",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sizes": "^1.0.5",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
     "sass": "^1.49.11",
     "typescript": "^4.6.3"
   },
   "dependencies": {
+    "@likecoin/qr-code-styling": "^1.6.6",
     "@walletconnect/client": "^1.8.0",
     "@walletconnect/types": "^1.8.0",
     "bowser": "2.11.0",
     "buffer": "^6.0.3",
-    "lottie-web": "^5.9.6",
-    "qr-code-styling": "1.6.0-rc.1"
+    "lottie-web": "^5.12.2"
   },
   "peerDependencies": {
-    "algosdk": "^2.1.0"
+    "algosdk": "^3.0.0"
   },
   "types": "./dist/index.d.ts",
   "repository": {
