@@ -11,7 +11,7 @@ export default [
     },
     output: {
       dir: "dist",
-      format: "cjs",
+      format: "esm",
       name: "DeflyConnect",
       globals: {
         "@walletconnect/client": "WalletConnect",
@@ -29,7 +29,6 @@ export default [
       "bowser",
       "qr-code-styling",
       "lottie-web",
-      "bufferutil",
       "utf-8-validate"
     ],
     plugins: [

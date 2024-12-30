@@ -1,6 +1,7 @@
+@use "../ui/styles/media-queries" as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;900&display=swap');
-@import "../ui/styles/media-queries";
 
 .defly-wallet-modal {
   --defly-wallet-modal-font-family: "Spline Sans", sans-serif;

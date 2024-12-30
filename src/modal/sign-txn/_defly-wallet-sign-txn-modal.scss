@@ -1,4 +1,4 @@
-@import "../defly-wallet-modal";
+@use "../defly-wallet-modal" as *;
 
 .defly-wallet-sign-txn-modal.defly-wallet-modal {
   .defly-wallet-modal__body {

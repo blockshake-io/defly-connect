@@ -4,7 +4,7 @@ import AppStoreIcon from '../../../asset/icon/AppStoreIcon.svg';
 import PlayStoreIcon from '../../../asset/icon/PlayStoreIcon.svg';
 import DeflyWalletLogoWithBlackBackground from '../../../asset/icon/DeflyWalletWithBlackBackground.svg';
 
-import QRCodeStyling from 'qr-code-styling';
+import QRCodeStyling from "@likecoin/qr-code-styling";
 
 import styles from './_defly-wallet-connect-modal-desktop-mode.scss';
 import accordionStyles from './accordion/_defly-wallet-accordion.scss';

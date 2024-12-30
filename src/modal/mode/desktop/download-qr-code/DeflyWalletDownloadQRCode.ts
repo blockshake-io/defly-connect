@@ -1,6 +1,6 @@
 import DeflyWalletLogoWithBlackBackground from "../../../../asset/icon/DeflyWalletWithBlackBackground.svg";
 
-import QRCodeStyling from "qr-code-styling";
+import QRCodeStyling from "@likecoin/qr-code-styling";
 
 import styles from "./_defly-wallet-download-qr-code.scss";
 import {DEFLY_DOWNLOAD_URL} from "../../../../util/deflyWalletConstants";
